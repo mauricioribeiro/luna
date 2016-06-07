@@ -1,5 +1,4 @@
-# PScripts
-Luna (pt-BR)
+# Luna (pt-BR)
 
 App: luna (mr project)
 
