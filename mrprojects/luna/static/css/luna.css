@@ -1,0 +1,17 @@
+/*** general ***/
+a{
+	text-decoration: none
+}
+.opacity-75{
+	opacity: 0.75
+}
+.opacity-50{
+	opacity: 0.5
+}
+.opacity-25{
+	opacity: 0.25
+}
+/*** home ***/
+#main-home{
+	margin-top: 10%;
+}
