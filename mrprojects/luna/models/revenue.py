@@ -9,7 +9,7 @@ from django.core.validators import MinValueValidator
 class Revenue(models.Model):
 
 	value = models.FloatField(validators = [MinValueValidator(0)])
-	category = models.ForeignKey(RevenueCategory, on_delete=models.CASCADE)
+	category = models.ForeignKey(RevenueCategory)
 	creation = models.DateTimeField('date published')
 
 	def __str__(self):

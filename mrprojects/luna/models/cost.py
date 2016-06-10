@@ -9,7 +9,7 @@ from django.core.validators import MinValueValidator
 class Cost(models.Model):
 
 	value = models.FloatField(validators = [MinValueValidator(0)])
-	category = models.ForeignKey(CostCategory, on_delete=models.CASCADE)
+	category = models.ForeignKey(CostCategory)
 	creation = models.DateTimeField('date published')
 
 	def __str__(self):
