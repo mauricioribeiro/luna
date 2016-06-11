@@ -6,6 +6,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
+from luna.models.revenue_category import RevenueCategory
+
 class Revenue(models.Model):
 
 	value = models.FloatField(validators = [MinValueValidator(0)])
