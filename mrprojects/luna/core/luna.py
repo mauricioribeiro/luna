@@ -7,29 +7,30 @@ class Luna:
 
 	def __init__(self, luna_command_classes):
 		self.__command = luna_command_classes
-		self.__luna_json_return = {'understood':False, 'message':'', 'data':None}
+
+	def getLunaJsonReturn(self):
+		return {'understood':False, 'data':None}
 
 	def process(self, speech):
-		for luna_command in self.__command:
+		r = self.getLunaJsonReturn()
+		for luna_command_class in self.__command:
+			luna_command = luna_command_class()
 			if luna_command.check(speech):
-				self.__luna_json_return['understood'] = True
-		return self.__luna_json_return
+				r['understood'] = True
+				r['data'] = luna_command.process(speech)
+		return r
 
 # Luna Command Abstract Class
 class LunaCommand(object):
 
 	def __init__(self):
-		self.__command = None
-		self.__luna_command_json_return = {'command':None, 'parameters':{}, 'return':None}
+		self._command = None
 
-	def getLunaCommandJsonReturn(self, process_parameters, process_return):
-		self.__luna_command_json_return['command'] = self.__command
-		self.__luna_command_json_return['parameters'] = process_parameters
-		self.__luna_command_json_return['return'] = process_return
-		return self.__luna_command_json_return
+	def getLunaCommandJsonReturn(self, process_parameters = {}, process_return = None):
+		return {'command':self.__command, 'parameters':process_parameters, 'return':process_return}
 
 	def check(self, speech):
-		return True if self.__command in speech.split(' ') else False
+		return True if self._command in speech.split(' ') else False
 
 	def process(self, speech):
 		raise NotImplementedError('Your class has not "process" method implemented (LunaCommand Abstract Class)')

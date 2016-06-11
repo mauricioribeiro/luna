@@ -8,7 +8,7 @@ from luna import LunaCommand
 class LunaCostCommand(LunaCommand):
 
 	def __init__(self):
-		self.__command = 'gastei'
+		self._command = 'gastei'
 
 	def process(self, speech):
-		return 1 if self.__command in speech.split(' ') else 0
+		return 1 if self._command in speech.split(' ') else 0
