@@ -2,7 +2,7 @@
 # Author: Mauricio Ribeiro
 # Python: 3.4
 
-from luna import LunaCommand
+from core.luna import LunaCommand
 
 # Luna Cost Command Class
 class LunaCostCommand(LunaCommand):
