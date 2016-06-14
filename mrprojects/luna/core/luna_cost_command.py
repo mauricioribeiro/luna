@@ -4,6 +4,8 @@
 
 from core.luna import LunaCommand
 
+import re
+
 # Luna Cost Command Class
 class LunaCostCommand(LunaCommand):
 
@@ -11,4 +13,17 @@ class LunaCostCommand(LunaCommand):
 		self._command = 'gastei'
 
 	def process(self, speech):
-		return 1 if self._command in speech.split(' ') else 0
+		r = self.getLunaCommandJsonReturn()
+		p = {'costs': [], 'category': None }
+		costs = re.findall(r"\w\$\s([0-9,.]+)",speech)
+		if 'r$' in speech.lower() and costs:
+			for c in costs:
+				self.save(float(c.replace('.','').replace(',','.')))
+			p['costs'] = costs if len(costs) > 1 else costs[0]
+			r['parameters'] = p
+		return r
+
+	def save(self, cost, category = None):
+		# store on model
+		print('cost %.2f saved' %cost)
+		return False

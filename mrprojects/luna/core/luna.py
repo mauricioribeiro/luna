@@ -27,7 +27,7 @@ class LunaCommand(object):
 		self._command = None
 
 	def getLunaCommandJsonReturn(self, process_parameters = {}, process_return = None):
-		return {'command':self.__command, 'parameters':process_parameters, 'return':process_return}
+		return {'command':self._command, 'parameters':process_parameters, 'return':process_return}
 
 	def check(self, speech):
 		return True if self._command in speech.split(' ') else False
